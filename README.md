@@ -62,6 +62,42 @@ Represents a credit card service provided by the bank.
 Attributes:
 - `credit_limit`: Credit limit of the credit card.
 
+```mermaid
+erDiagram
+    CUSTOMER {
+        string first_name
+        string last_name
+        string address
+    }
+    ACCOUNT {
+        string account_number
+        string account_type
+        float balance
+    }
+    EMPLOYEE {
+        string first_name
+        string last_name
+        string employee_id
+        string position
+    }
+    LOAN {
+        float loan_amount
+        float interest_rate
+    }
+    CREDITCARD {
+        float credit_limit
+    }
+
+    CUSTOMER ||--|{ ACCOUNT : has
+    ACCOUNT ||--|| CUSTOMER : "belongs to"
+    CUSTOMER ||--|{ LOAN : takes
+    LOAN ||--|| CUSTOMER : "belongs to"
+    CUSTOMER ||--|{ CREDITCARD : owns
+    CREDITCARD ||--|| CUSTOMER : "belongs to"
+    EMPLOYEE ||--|| LOAN : approves
+    EMPLOYEE ||--|| CREDITCARD : issues
+```
+
 ## Functionality
 
 The program provides the following functionalities:

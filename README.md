@@ -118,6 +118,69 @@ The program provides the following functionalities:
 - **Data Persistence:**
   - Data is stored in a JSON file (`bank_data.json`) to maintain customer and employee records across sessions.
 
+# Banking System UML Diagram
+
+```mermaid
+classDiagram
+    class Customer {
+        -string first_name
+        -string last_name
+        -string address
+        +__init__(first_name, last_name, address)
+        +add_account(account)
+        +__str__()
+    }
+
+    class Account {
+        -string account_number
+        -string account_type
+        -float balance
+        +__init__(account_number, account_type, balance=0)
+        +deposit(amount)
+        +withdraw(amount)
+        +__str__()
+    }
+
+    class Employee {
+        -string first_name
+        -string last_name
+        -string employee_id
+        -string position
+        +__init__(first_name, last_name, employee_id, position)
+        +__str__()
+    }
+
+    class Loan {
+        -float loan_amount
+        -float interest_rate
+        +__init__(loan_amount, interest_rate)
+        +__str__()
+    }
+
+    class CreditCard {
+        -float credit_limit
+        +__init__(credit_limit)
+        +__str__()
+    }
+
+    class BankSystem {
+        -List~Customer~ customers
+        +__init__()
+        +add_customer(first_name, last_name, address)
+        +create_account(customer, account_type, initial_balance)
+        +deposit(customer, account_idx, amount)
+        +withdraw(customer, account_idx, amount)
+        +check_balance(customer, account_idx)
+    }
+
+    Customer "1" --> "0..*" Account : has
+    Customer "1" --> "0..*" Loan : takes
+    Customer "1" --> "0..*" CreditCard : owns
+    Employee "1" --> "0..*" Loan : approves
+    Employee "1" --> "0..*" CreditCard : issues
+    BankSystem "1" --> "0..*" Customer : manages
+
+
 ## Usage
 
 To use the banking system:

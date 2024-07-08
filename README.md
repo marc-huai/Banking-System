@@ -179,7 +179,7 @@ classDiagram
     Employee "1" --> "0..*" Loan : approves
     Employee "1" --> "0..*" CreditCard : issues
     BankSystem "1" --> "0..*" Customer : manages
-
+```
 
 ## Usage
 
